@@ -39,8 +39,8 @@ def decode():
                     if (count + 2 < size):
                         data += str(b & 1)
                     count += 3
-
-
+                else:
+                    break
     # Convert lsb data back into message
     data = hex(int(data,2))[2:]
     data = data.strip('L')
@@ -91,7 +91,7 @@ def encode():
                 if (data_iterator + 2 < len(bintext)):
                     b += int(bintext[data_iterator + 2])
                 data_iterator += 3
-
+            
             new_image_data.putpixel((w,h), (r, g, b))
 
     print "Saving image in steg-images/"
