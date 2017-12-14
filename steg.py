@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, binascii, math
+import sys, binascii, math, os
 from PIL import Image
 
 max_lsb = 1
@@ -86,16 +86,8 @@ def encode():
 
             new_image_data.putpixel((i % image.height, int (math.floor(i/image.height)) ), (r, g, b))
 
-#    for i in range(image.width * image.height):
-#        print new_image_data[i]
-    print "Saving image"
-    new_image.save( "test" + "-hidden.png", "PNG")
-
-
-
-
-
-
+    print "Saving image in steg-images/"
+    new_image.save( "steg-images/" + os.path.splitext(os.path.basename(sys.argv[2]))[0] + ".png" , "PNG")
 
 
 def usage():
@@ -115,6 +107,3 @@ if __name__ == "__main__":
     else:
         decode()
         sys.exit(1)
-
-    #imagepath = sys.argv[2]
-    #image = Image.open(imagepath)
